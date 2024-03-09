@@ -8,6 +8,7 @@ initialize();
 
 
 async function initialize() {
+    
 
     const { host, port, user, password, database} = config.database;
     const connection = await mysql.createConnection({host, port, user, password});
@@ -16,7 +17,10 @@ async function initialize() {
     const sequelize = new Sequelize(database, user, password, { dialect: 'mysql'});
 
     db.User = require('../users/user.model')(sequelize);
+    db.Product = require('../products/product.model')(sequelize);
 
     await sequelize.sync({ alter: true});
 }
 
+  
+  initialize();
